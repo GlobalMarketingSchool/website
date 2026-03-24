@@ -1,0 +1,7 @@
+{
+  "name": "global-marketing-school",
+  "version": "1.0.0",
+  "description": "Global Marketing School Website",
+  "main": "index.html",
+  "private": true
+}

@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'DM Sans', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: hsl(var(--primary));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: hsl(var(--secondary));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: hsl(var(--border));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: hsl(var(--accent));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: hsl(var(--destructive));
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+}
+
+:root {
+  --background: 0 0% 5%;
+  --foreground: 0 0% 95%;
+
+  --card: 220 40% 10%;
+  --card-foreground: 0 0% 95%;
+  --card-border: 220 30% 18%;
+
+  --popover: 220 40% 8%;
+  --popover-foreground: 0 0% 95%;
+  --popover-border: 220 30% 18%;
+
+  /* #FFD700 Golden Yellow — accent */
+  --primary: 51 100% 50%;
+  --primary-foreground: 0 0% 5%;
+
+  /* #00509E Deep Royal Blue */
+  --secondary: 210 100% 31%;
+  --secondary-foreground: 0 0% 95%;
+
+  --muted: 220 30% 10%;
+  --muted-foreground: 220 15% 60%;
+
+  --accent: 45 100% 55%;
+  --accent-foreground: 0 0% 5%;
+
+  --destructive: 0 72% 55%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 220 30% 18%;
+  --input: 220 30% 13%;
+  --ring: 51 100% 50%;
+
+  --radius: 0.875rem;
+}
+
+@layer base {
+  * { @apply border-border; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply font-sans antialiased;
+    color: rgba(240,240,250,0.92);
+    background-color: #0a0a12;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(0,80,158,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(0,80,158,0.2) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255,215,0,0.03) 0%, transparent 70%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight;
+  }
+}
+
+/* ─── Apple OS Glassmorphism ─────────────────────────────────── */
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  /* Frosted glass — light panels */
+  .glass {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.12),
+      0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  /* Frosted glass — scrolled navbar */
+  .glass-nav {
+    background: rgba(10,10,18,0.75);
+    backdrop-filter: blur(32px) saturate(180%);
+    -webkit-backdrop-filter: blur(32px) saturate(180%);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 1px 0 rgba(255,215,0,0.08), 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  /* Glossy card */
+  .glass-card {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255,255,255,0.09);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.1),
+      inset 0 -1px 0 rgba(0,0,0,0.2),
+      0 20px 60px rgba(0,0,0,0.5),
+      0 0 0 1px rgba(0,80,158,0.06);
+  }
+
+  /* Royal blue glass card */
+  .glass-blue {
+    background: rgba(0,80,158,0.25);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(0,130,255,0.2);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.15),
+      0 20px 60px rgba(0,0,0,0.4),
+      0 0 40px rgba(0,80,158,0.15);
+  }
+
+  /* Glossy gold button effect */
+  .btn-gold {
+    background: linear-gradient(145deg, #FFE55C 0%, #FFD700 45%, #E8A000 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.4),
+      inset 0 -1px 0 rgba(0,0,0,0.15),
+      0 4px 20px rgba(255,215,0,0.35),
+      0 1px 3px rgba(0,0,0,0.3);
+    color: #0a0a12;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+  .btn-gold:hover {
+    background: linear-gradient(145deg, #FFED80 0%, #FFD700 45%, #F0A800 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.5),
+      0 6px 28px rgba(255,215,0,0.45),
+      0 1px 3px rgba(0,0,0,0.3);
+    transform: translateY(-1px);
+  }
+
+  /* Glossy section divider */
+  .glow-gold {
+    box-shadow: 0 0 60px rgba(255,215,0,0.12), 0 0 120px rgba(255,215,0,0.06);
+  }
+  .glow-blue {
+    box-shadow: 0 0 60px rgba(0,80,158,0.2), 0 0 120px rgba(0,80,158,0.1);
+  }
+
+  /* Specular highlight on top edge */
+  .specular {
+    position: relative;
+  }
+  .specular::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .animate-marquee {
+    animation: marquee 28s linear infinite;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
